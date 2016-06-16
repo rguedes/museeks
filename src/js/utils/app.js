@@ -97,7 +97,18 @@ db.reset = function() {
 // WTFix, db.loadDatabase() throw an error if the line below is not here
 fs.writeFile(path.join(pathUserData, '.init'), "", (err) => { if(err) throw err; });
 
+var torrentsDb = new nedb({
+    filename: path.join(pathUserData, 'torrents.db'),
+    autoload: true
+});
 
+torrentsDb.reset = function() {
+    torrentsDb.remove({}, { multi: true }, function (err, numRemoved) {
+        torrentsDb.loadDatabase(function (err) {
+            if(err) throw err;
+        });
+    });
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -110,6 +121,7 @@ export default {
     config           : conf,             // teeny-conf
     initialConfig    : conf.getAll(),    // the config at the start of the application
     db               : db,               // database
+    torrentsDb       : torrentsDb,       // torrents database
     supportedFormats : supportedFormats, // supported audio formats
     audio            : audio,            // HTML5 audio tag
     pathSrc          : pathSrc,          // path of the app

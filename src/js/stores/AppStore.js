@@ -40,6 +40,7 @@ var AppStore = objectAssign({}, EventEmitter.prototype, {
     repeat            :  false, // the current repeat state (one, all, false)
     shuffle           :  false, // If shuffle mode is enabled
     refreshProgress   :  0,     // Progress of the refreshing library
+    torrents            :  null,// All torrents shown on the view
 
     getStore: function() {
         return {
@@ -50,11 +51,11 @@ var AppStore = objectAssign({}, EventEmitter.prototype, {
             queue             : this.queue,
             queueCursor       : this.queueCursor,
             playerStatus      : this.playerStatus,
-            notifications     : this.notifications,
             refreshingLibrary : this.refreshingLibrary,
             repeat            : this.repeat,
             shuffle           : this.shuffle,
-            refreshProgress   : this.refreshProgress
+            refreshProgress   : this.refreshProgress,
+            torrents          : this.torrents
         };
     },
 
@@ -473,6 +474,46 @@ AppDispatcher.register(function(payload) {
             AppStore.notifications = AppStore.notifications.filter((elem) => {
                 return elem._id !== payload._id;
             });
+            AppStore.emit(CHANGE_EVENT);
+            break;
+
+        //Torrents
+        case(AppConstants.APP_ADD_TORRENT):
+            console.log("add torrent");
+            /*var torrentsFolder = app.config.get('torrentsFolder'),
+              torrents      = payload.torrents;
+
+            // Check if we reveived folders
+            if(torrents !== undefined) {
+                // Add folders
+                torrents.forEach((torrent) => {
+                    torrentsFolder.push(torrent);
+                });
+
+                // Remove duplicates, useless children, ect...
+                torrentsFolder = utils.removeUselessFolders(torrentsFolder);
+
+                //musicFolders.sort();
+
+                app.config.set('torrentsFolder', torrentsFolder);
+                app.config.saveSync();
+            }*/
+            AppStore.emit(CHANGE_EVENT);
+            break;
+        case(AppConstants.APP_DELETE_TORRENT):
+            console.log("delete torrent");
+            AppStore.emit(CHANGE_EVENT);
+            break;
+        case(AppConstants.APP_STOP_TORRENT):
+            console.log("stop torrent");
+            AppStore.emit(CHANGE_EVENT);
+            break;
+        case(AppConstants.APP_START_TORRENT):
+            console.log("start torrent");
+            AppStore.emit(CHANGE_EVENT);
+            break;
+        case(AppConstants.APP_FINISH_DOWNLOAD_TORRENT):
+            console.log("finish download torrent");
             AppStore.emit(CHANGE_EVENT);
             break;
     }

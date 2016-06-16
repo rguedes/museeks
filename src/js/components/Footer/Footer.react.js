@@ -38,6 +38,11 @@ export default class Footer extends Component {
                         <Icon name='gear' fixedWidth />
                     </Button>
                 </LinkContainer>
+              <LinkContainer to='/torrents'>
+                    <Button className='view-link'>
+                        <Icon name='cloud' fixedWidth />
+                    </Button>
+                </LinkContainer>
             </ButtonGroup>
         );
 

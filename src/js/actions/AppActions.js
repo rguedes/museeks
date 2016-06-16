@@ -13,6 +13,7 @@ import NotificationsActions from './NotificationsActions';
 import PlayerActions        from './PlayerActions';
 import QueueActions         from './QueueActions';
 import SettingsActions      from './SettingsActions';
+import TorrentsActions      from './TorrentsActions';
 
 
 
@@ -21,6 +22,7 @@ var AppActions = {
     player        : PlayerActions,
     queue         : QueueActions,
     library       : LibraryActions,
+    torrents      : TorrentsActions,
     settings      : SettingsActions,
     notifications : NotificationsActions,
 
@@ -28,6 +30,7 @@ var AppActions = {
 
         // Usual tasks
         this.library.refreshTracks();
+        this.torrents.checkTorrents();
         this.settings.checkTheme();
         this.settings.checkDevMode();
         this.app.initShortcuts();

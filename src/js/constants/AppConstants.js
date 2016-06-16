@@ -34,5 +34,12 @@ export default keymirror({
     APP_LIBRARY_REFRESH_PROGRESS : null,
 
     APP_NOTIFICATION_ADD    : null,
-    APP_NOTIFICATION_REMOVE : null
+    APP_NOTIFICATION_REMOVE : null,
+
+    APP_ADD_TORRENT: null,
+    APP_DELETE_TORRENT: null,
+    APP_STOP_TORRENT: null,
+    APP_START_TORRENT: null,
+    APP_FINISH_DOWNLOAD_TORRENT: null
+
 });

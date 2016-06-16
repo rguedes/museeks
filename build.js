@@ -43,8 +43,8 @@ const options = {
     // required
     'dir'           :  './',
     'name'          :  'museeks',
-    'platform'      : ['darwin', 'win32', 'linux'],
-    'arch'          : ['ia32', 'x64'],
+    'platform'      : ['linux'],
+    'arch'          : ['x64'],
     'version'       :  '1.2.2',
     'icon'          :  path.join('src', 'images', 'logos', 'museeks.png'),
     'build-version' :  app.version,
